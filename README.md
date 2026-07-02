@@ -1,2 +1,2 @@
-# $\LaTeX$ Thesis Template
+# LaTeX Thesis Template
 
