@@ -1,0 +1,197 @@
+\usepackage{iftex} % Добавляем пакет для определения используемого движка TeX
+
+%%% Проверка используемого TeX-движка %%%
+\newif\ifxetexorluatex   % определяем новый условный оператор
+\ifXeTeX
+    \xetexorluatextrue
+\else
+    \ifLuaTeX
+        \xetexorluatextrue
+    \else
+        \xetexorluatexfalse
+    \fi
+\fi
+
+\usepackage{etoolbox}   % Для продвинутой проверки разных условий
+\providebool{presentation}
+
+\usepackage{comment}    % Позволяет убирать блоки текста
+
+%%% Поля и разметка страницы %%%
+\usepackage{pdflscape}  % Для включения альбомных страниц
+\usepackage{geometry}   % Для последующего задания полей
+
+%%% Форматирование текста %%%
+\usepackage{paracol}
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
+\usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+\usepackage{mathtools}              % Добавляет окружение multlined
+\usepackage{xfrac}                  % Красивые дроби
+\usepackage[
+    locale = DE,
+    list-separator       = {;\,},
+    list-final-separator = {;\,},
+    list-pair-separator  = {;\,},
+    list-units           = single,
+    range-units          = single,
+    range-phrase={\text{\ensuremath{-}}},
+    fraction-function    = \sfrac,
+    separate-uncertainty,
+    ]{siunitx}                 % Размерности SI
+\sisetup{inter-unit-product = \ensuremath{{}\cdot{}}}
+
+% Кириллица в нумерации subequations
+\usepackage{alphalph} % Для корректной работы \asbuk
+\usepackage{chngcntr} % Для сброса счётчиков
+
+\patchcmd{\subequations}{\def\theequation{\theparentequation\alph{equation}}}
+{\def\theequation{\theparentequation\asbuk{equation}}}
+{\typeout{subequations patched}}{\typeout{subequations not patched}}
+
+%%%% Установки для размера шрифта 14 pt %%%%
+%% Формирование переменных и констант для сравнения
+\newlength{\curtextsize}
+\newlength{\bigtextsize}
+\setlength{\bigtextsize}{13.9pt}
+
+\makeatletter
+\setlength{\curtextsize}{\f@size pt}
+\makeatother
+
+%%% Кодировки и шрифты %%%
+\ifxetexorluatex
+    \ifpresentation
+        \providecommand*\autodot{} % quick fix for polyglossia
+    \fi
+    \PassOptionsToPackage{no-math}{fontspec}
+    \usepackage{polyglossia}
+    \setdefaultlanguage{russian}
+    \setotherlanguage{english}
+\else
+    \usepackage{cmap}   % Улучшенный поиск русских слов в PDF
+    \usepackage{textcomp}
+    \usepackage[english, greek, russian]{babel}
+    \usepackage[T1,T2A]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \makeatletter\AtBeginDocument{\let\@elt\relax}\makeatother
+\fi
+
+%%% Оформление абзацев %%%
+\ifpresentation
+\else
+    \usepackage{indentfirst} % Красная строка в начале главы
+\fi
+
+%%% Оформление цитат %%%
+\usepackage{csquotes}
+
+%%% Оформление эпиграфов %%%
+\usepackage{epigraph}
+
+%%% Цвета %%%
+\ifpresentation
+\else
+    \usepackage[dvipsnames, table, hyperref]{xcolor}
+\fi
+
+%%% Таблицы %%%
+\usepackage{longtable,ltcaption}
+\usepackage{multirow,makecell}
+\usepackage{tabularx} % Заменяем tabu на tabularx
+\usepackage{array} % Для настраиваемых типов колонок
+\usepackage{ragged2e} % Для управления выравниванием текста
+
+\usepackage{threeparttable}
+
+%%% Общее форматирование %%%
+\usepackage{soul}   % Заменяем soulutf8 на soul
+\usepackage{icomma}
+
+%%% Векторная графика %%%
+\usepackage{tikz}
+\usetikzlibrary{chains, shapes.geometric, shapes.symbols, arrows}
+\usetikzlibrary{patterns}
+
+\usepackage{pgfplots} % Оформление графиков
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{dateplot}
+\usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{statistics}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+\sisetup{
+  round-mode = places,
+  round-precision = 2,
+}
+
+%%% Гиперссылки %%%
+\ifxetexorluatex
+    \let\CYRDZE\relax
+\fi
+\usepackage{hyperref}
+
+%%% Изображения %%%
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+
+%%% Счётчики %%%
+\usepackage{aliascnt}
+\usepackage[figure,table]{totalcount}
+\usepackage{totcount}
+\usepackage{totpages}
+
+%%% Продвинутое управление ссылками %%%
+\ifpresentation
+\else
+    \usepackage{cleveref}
+    \usepackage{kvsetkeys}
+    \makeatletter
+    \let\org@@cref\@cref
+    \renewcommand*{\@cref}[2]{%
+        \edef\process@me{%
+            \noexpand\org@@cref{#1}{\zap@space#2 \@empty}%
+        }\process@me
+    }
+    \makeatother
+\fi
+
+\usepackage{placeins}
+
+\ifnumequal{\value{draft}}{1}{% Черновик
+    \usepackage[firstpage]{draftwatermark}
+    \SetWatermarkText{DRAFT}
+    \SetWatermarkFontSize{14pt}
+    \SetWatermarkScale{15}
+    \SetWatermarkAngle{45}
+}{}
+
+%%% Списки %%%
+\usepackage{enumitem}
+
+%%% Оформление списка обозначений %%%
+\usepackage[intoc]{nomencl}
+\makenomenclature
+\setlength{\nomitemsep}{-.8\parsep}
+
+\usepackage{fr-longtable}    % Для \endlasthead
+
+% Листинги исходного кода
+\usepackage{fancyvrb}
+\usepackage{listings}
+\lccode`\~=0\relax % Исправление для listings в XeLaTeX и LuaLaTeX
+
+% Русская традиция начертания греческих букв
+\usepackage{upgreek}
+
+%%% Отметка о версии черновика на каждой странице %%%
+\ifnumequal{\value{draft}}{1}{% Черновик
+    \IfFileExists{.git/gitHeadInfo.gin}{
+        \usepackage[mark,pcount]{gitinfo2}
+        \renewcommand{\gitMark}{rev.\gitAbbrevHash\quad\gitCommitterEmail\quad\gitAuthorIsoDate}
+        \renewcommand{\gitMarkFormat}{\rmfamily\color{Gray}\small\bfseries}
+    }{}
+}{}

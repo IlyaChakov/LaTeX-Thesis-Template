@@ -1,0 +1,25 @@
+\appendix
+\renewcommand{\appendixname}{Приложение}
+\renewcommand{\thechapter}{\Asbuk{chapter}}
+
+\counterwithin{subsection}{chapter}
+\renewcommand{\thesubsection}{П.\thechapter.\arabic{subsection}}
+
+\addcontentsline{toc}{chapter}{Приложения}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+
+\input{Text/Appendices/appendix-a.tex} % Определения цикла
+\input{Text/Appendices/appendix-b.tex} % Термины цикла
+\input{Text/Appendices/appendix-c.tex} % Классификация терминов цикла
+
+\input{Text/Appendices/appendix-dialectica.tex} % Противоречия и промышленный цикл
+\input{Text/Appendices/appendix-model.tex} % Математическая модель
+
+\input{Text/Appendices/appendix-emp.tex} % Эмпирический анализ цикла
+
+%\input{Text/Appendices/appendix-d.tex}
+%\input{Text/Appendices/appendix-e.tex}
+%\input{Text/Appendices/appendix-f.tex}
+%\input{Text/Appendices/appendix-g.tex}
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}

@@ -1,0 +1,300 @@
+\begin{figure}[h]
+
+% Загрузка данных в таблицу
+\pgfplotstableread[col sep=comma]{Media/Data/INDPRO.csv} \indpro % ИПП
+\pgfplotstableread[col sep=comma]{Media/Data/GDPCA.csv} \gdpca % ВВП
+
+% Индекс промышленного производства
+\begin{tikzpicture}
+    \begin{axis}[
+        plotstyle-3,
+        date coordinates in=x,
+        xmin=1919-01-01, xmax=2026-04-01,
+        ymax=110, ymin=0,
+        %ytick distance=200,
+        %xtick distance=1,
+        xtick={
+            1920-01-01,
+            1925-01-01,
+            1930-01-01,
+            1935-01-01,
+            1940-01-01,
+            1945-01-01,
+            1950-01-01,
+            1955-01-01,
+            1960-01-01,
+            1965-01-01,
+            1970-01-01,
+            1975-01-01,
+            1980-01-01,
+            1985-01-01,
+            1990-01-01,
+            1995-01-01,
+            2000-01-01,
+            2005-01-01,
+            2010-01-01,
+            2015-01-01,
+            2020-01-01,
+            2025-01-01
+        },
+        xticklabel=\year,
+        xmajorgrids=true,
+        ylabel={индекс 2017 = 100}, % Подпись оси Y
+        legend columns=-1,
+      ]
+
+    % 1. Цикл 1920-01-01 – 1929-08-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1920-01-01,0) rectangle (axis cs:1921-03-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1921-03-01,0) rectangle (axis cs:1921-07-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1921-07-01,0) rectangle (axis cs:1922-11-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1922-11-01,0) rectangle (axis cs:1923-05-01,110);
+
+        %% промежуток 1
+        \fill[gray, opacity=0.5] (axis cs:1923-05-01,0) rectangle (axis cs:1924-06-01,110); % кризис
+        \fill[gray, opacity=0.8] (axis cs:1924-06-01,0) rectangle (axis cs:1924-07-01,110); % депрессия
+        \fill[gray, opacity=0.25] (axis cs:1924-07-01,0) rectangle (axis cs:1925-10-01,110); % оживление
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1925-10-01,0) rectangle (axis cs:1926-10-01,110);
+
+        %% промежуток 2
+        \fill[gray, opacity=0.5] (axis cs:1926-10-01,0) rectangle (axis cs:1927-10-01,110); % кризис
+        \fill[gray, opacity=0.8] (axis cs:1927-10-01,0) rectangle (axis cs:1927-11-01,110); % депрессия
+        \fill[gray, opacity=0.25] (axis cs:1927-11-01,0) rectangle (axis cs:1928-07-01,110); % оживление
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1928-07-01,0) rectangle (axis cs:1929-08-01,110);
+
+    % 2. Цикл 1929-08-01 – 1937-05-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1929-08-01,0) rectangle (axis cs:1932-07-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1932-07-01,0) rectangle (axis cs:1933-03-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1933-03-01,0) rectangle (axis cs:1936-12-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1936-12-01,0) rectangle (axis cs:1937-05-01,110);
+
+    % 3. Цикл 1937-05-01 – 1948-11-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1937-05-01,0) rectangle (axis cs:1937-12-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1937-12-01,0) rectangle (axis cs:1938-06-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1938-06-01,0) rectangle (axis cs:1939-10-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1939-10-01,0) rectangle (axis cs:1945-02-01,110);
+
+        %% промежуток 1
+        \fill[gray, opacity=0.5] (axis cs:1945-02-01,0) rectangle (axis cs:1945-10-01,110); % кризис
+        \fill[gray, opacity=0.8] (axis cs:1945-10-01,0) rectangle (axis cs:1946-05-01,110); % депрессия
+        \fill[gray, opacity=0.25] (axis cs:1946-05-01,0) rectangle (axis cs:1948-11-01,110); % оживление
+
+
+    % 4. Цикл 1948-11-01 – 1957-08-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1948-11-01,0) rectangle (axis cs:1949-05-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1949-05-01,0) rectangle (axis cs:1949-10-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1949-10-01,0) rectangle (axis cs:1950-03-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1950-03-01,0) rectangle (axis cs:1953-07-01,110);
+
+        %% промежуток 1
+        \fill[gray, opacity=0.5] (axis cs:1953-07-01,0) rectangle (axis cs:1953-12-01,110); % кризис
+        \fill[gray, opacity=0.8] (axis cs:1953-12-01,0) rectangle (axis cs:1954-05-01,110); % депрессия
+        \fill[gray, opacity=0.25] (axis cs:1954-05-01,0) rectangle (axis cs:1955-03-01,110); % оживление
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1955-03-01,0) rectangle (axis cs:1957-08-01,110);
+
+    % 5. Цикл 1957-08-01 – 1969-12-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1957-08-01,0) rectangle (axis cs:1958-04-01,110);
+
+        %% промежуток 1
+        \fill[gray, opacity=0.25] (axis cs:1958-04-01,0) rectangle (axis cs:1960-04-01,110); % оживление
+
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1960-04-01,0) rectangle (axis cs:1960-12-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1960-12-01,0) rectangle (axis cs:1961-02-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1961-02-01,0) rectangle (axis cs:1961-07-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1961-07-01,0) rectangle (axis cs:1969-12-01,110);
+
+    % 6. Цикл 1969-12-01 – 1980-01-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1969-12-01,0) rectangle (axis cs:1970-10-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1970-10-01,0) rectangle (axis cs:1970-11-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1970-11-01,0) rectangle (axis cs:1971-11-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1971-11-01,0) rectangle (axis cs:1973-11-01,110);
+
+        %% промежуток 1
+        \fill[gray, opacity=0.5] (axis cs:1973-11-01,0) rectangle (axis cs:1975-03-01,110); % кризис
+        \fill[gray, opacity=0.8] (axis cs:1975-03-01,0) rectangle (axis cs:1975-05-01,110); % депрессия
+        \fill[gray, opacity=0.25] (axis cs:1975-05-01,0) rectangle (axis cs:1977-02-01,110); % оживление
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1977-02-01,0) rectangle (axis cs:1980-01-01,110);
+
+    % 7. Цикл 1980-01-01 – 1990-07-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1980-01-01,0) rectangle (axis cs:1980-07-01,110);
+
+        %% промежуток 1
+        \fill[gray, opacity=0.25] (axis cs:1980-07-01,0) rectangle (axis cs:1981-07-01,110); % оживление
+
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1981-07-01,0) rectangle (axis cs:1982-11-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1982-11-01,0) rectangle (axis cs:1983-02-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1983-02-01,0) rectangle (axis cs:1984-01-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1984-01-01,0) rectangle (axis cs:1990-07-01,110);
+
+    % 8. Цикл 1990-07-01 – 2001-03-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:1990-07-01,0) rectangle (axis cs:1991-02-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:1991-02-01,0) rectangle (axis cs:1991-04-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:1991-04-01,0) rectangle (axis cs:1992-04-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:1992-04-01,0) rectangle (axis cs:2001-03-01,110);
+
+    % 9. Цикл 2001-03-01 – 2007-12-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:2001-03-01,0) rectangle (axis cs:2001-11-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:2001-11-01,0) rectangle (axis cs:2002-01-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:2002-01-01,0) rectangle (axis cs:2003-01-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:2003-01-01,0) rectangle (axis cs:2007-12-01,110);
+
+    % 10. Цикл 2007-12-01 – 2020-02-01
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:2007-12-01,0) rectangle (axis cs:2009-05-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:2009-05-01,0) rectangle (axis cs:2009-07-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:2009-07-01,0) rectangle (axis cs:2014-06-01,110);
+
+        %% подъем
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:2014-06-01,0) rectangle (axis cs:2020-02-01,110);
+
+    % 11. Цикл 2020-02-01 – ???
+        %% кризис
+        \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8] (axis cs:2020-02-01,0) rectangle (axis cs:2020-04-01,110);
+
+        %% депрессия
+        \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8] (axis cs:2020-04-01,0) rectangle (axis cs:2020-05-01,110);
+
+        %% оживление
+        \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8] (axis cs:2020-05-01,0) rectangle (axis cs:2025-05-01,110);
+
+        %% подъем ???
+        \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8] (axis cs:2025-05-01,0) rectangle (axis cs:2026-04-01,110);
+
+
+    % Периоды цикла (по циклическим кризисам)
+    \draw[dashed, black, line width=1pt] (axis cs:1920-01-01,0) -- (axis cs:1920-01-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:1929-08-01,0) -- (axis cs:1929-08-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:1937-05-01,0) -- (axis cs:1937-05-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:1948-11-01,0) -- (axis cs:1948-11-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:1957-08-01,0) -- (axis cs:1957-08-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:1969-12-01,0) -- (axis cs:1969-12-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:1980-01-01,0) -- (axis cs:1980-01-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:1990-07-01,0) -- (axis cs:1990-07-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:2001-03-01,0) -- (axis cs:2001-03-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:2007-12-01,0) -- (axis cs:2007-12-01,110);
+    \draw[dashed, black, line width=1pt] (axis cs:2020-02-01,0) -- (axis cs:2020-02-01,110);
+
+
+    % Индекс промышленного производства
+    \addplot[color=black, line width=1pt] table[
+        x=observation_date,
+        y=INDPRO,
+    ] {\indpro};
+    \addlegendentry{ИПП}
+
+    % Дополнительные элеметы легенды
+
+    \addlegendimage{dashed, black, line width=0.6pt}
+    \addlegendentry{Периоды}
+
+    \addlegendimage{
+        legend image code/.code={
+            \fill[fill={rgb,255:red,128;green,0;blue,0}, opacity=0.8]
+                (0cm,-0.1cm) rectangle (0.16cm,0.1cm);
+            \fill[fill={rgb,255:red,61;green,23;blue,199}, opacity=0.8]
+                (0.22cm,-0.1cm) rectangle (0.38cm,0.1cm);
+            \fill[fill={rgb,255:red,51;green,153;blue,153}, opacity=0.8]
+                (0.44cm,-0.1cm) rectangle (0.60cm,0.1cm);
+            \fill[fill={rgb,255:red,220;green,173;blue,118}, opacity=0.8]
+                (0.66cm,-0.1cm) rectangle (0.82cm,0.1cm);
+        }
+    }
+    \addlegendentry{Фазы (КДОП)}
+
+    \addlegendimage{
+        legend image code/.code={
+            \fill[gray, opacity=0.5]
+                (0cm,-0.1cm) rectangle (0.16cm,0.1cm);
+            \fill[gray, opacity=0.8]
+                (0.22cm,-0.1cm) rectangle (0.38cm,0.1cm);
+            \fill[gray, opacity=0.25]
+                (0.44cm,-0.1cm) rectangle (0.60cm,0.1cm);
+        }
+    }
+    \addlegendentry{Промежутки (КДО)}
+
+    \end{axis}
+\end{tikzpicture}
+
+\caption{Индекс промышленного производства и фазы промышленного цикла в экономике США \\
+Источник: составлено автором на основе FRED\cite{IMF}, NBER\cite{IMF}
+}
+
+\label{fig: Test Plot}
+\end{figure}

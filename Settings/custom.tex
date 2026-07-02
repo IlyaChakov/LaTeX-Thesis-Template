@@ -1,0 +1,64 @@
+\usepackage{physics}
+
+% colored text
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+
+\usepackage{graphicx} % Для использования команды \resizebox
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.} % Настройка номеров в списке литературы без скобок
+\makeatother
+
+\usepackage[absolute,overlay]{textpos}
+
+\usepackage{colortbl} % Для работы с цветами в таблицах
+\usepackage{xcolor}   % Для работы с цветами и градиентами
+
+% Определяем диапазон значений
+\newcommand{\minval}{1}
+\newcommand{\maxval}{22}
+
+\usepackage{float} % Для использования модификатора [H]
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+
+\usepackage{afterpage}
+
+% Оформление субсекций в стиле параграфов
+\setsubsecheadstyle{\normalfont\normalsize\bfseries}
+\setbeforesubsecskip{\baselineskip}
+\setaftersubsecskip{-1em}
+
+% Постановка точки в конце заголовков субсекций
+\makeatletter
+\let\oldsubsection\subsection
+
+\renewcommand{\subsection}{%
+    \@ifstar{\subsectionstar}{\subsectionnostar}%
+}
+
+\newcommand{\subsectionstar}[1]{%
+    \oldsubsection*{#1.}%
+}
+
+\newcommand{\subsectionnostar}[1]{%
+    \oldsubsection{#1.}%
+}
+\makeatother
+
+% Круглая точка в маркированных списках
+\renewcommand{\labelitemi}{\textbullet}
+
+% Белая линия для \multicolumn
+\newcommand{\whitehline}{%
+    \arrayrulecolor{gray}\hline\arrayrulecolor{black}%
+}
+
+% Библиотека для построения графиков с осью дат
+\usepgfplotslibrary{dateplot}
+
+% Корректное отображение ссылок
+\usepackage{xurl}

@@ -1,0 +1,31 @@
+\documentclass[a4paper,12pt,oneside,openany]{memoir}
+
+\input{Settings/setup} % Общие настройки шаблона
+\input{Settings/packages} % Пакеты, которые нужны для шаблона
+\input{Settings/setupsimple} % Упрощённые настройки шаблона
+\input{Settings/fonts} % Определение шрифтов (частичное)
+\input{Settings/styles}
+\input{Settings/plots}
+\input{Settings/tables}
+\input{Settings/custom} % Сюда закидывайте все свои нужные доп. надстройки
+
+\begin{document}
+
+\input{Settings/renames}
+\input{Settings/numeration}
+
+\include{Appearance/title} % Титульный лист
+\include{Appearance/contents} % Оглавление
+
+\include{Text/introduction} % Введение
+\include{Text/Chapter 1/chapter1} % Глава 1
+\include{Text/Chapter 2/chapter2} % Глава 2
+\include{Text/Chapter 3/chapter3} % Глава 3
+\include{Text/conclusion} % Заключение
+\include{Text/references-3} % Список литературы
+\setcounter{totalchapter}{\value{chapter}} % Подсчёт количества глав
+
+\include{Text/Appendices/appendices} % Приложения, тут же свои публикации
+\setcounter{totalappendix}{\value{chapter}} % Подсчёт количества приложений
+
+\end{document}

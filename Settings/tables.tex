@@ -1,0 +1,69 @@
+%%% Таблицы: общие настройки оформления %%%
+
+%%% Базовый размер шрифта в таблицах
+\AtBeginEnvironment{tabularx}{%
+    \footnotesize
+    \rowcolors{2}{gray!10}{white}%
+}
+
+\AtBeginEnvironment{longtable}{%
+    \footnotesize
+    \rowcolors{2}{white}{gray!10}%
+}
+
+%%% Отступы longtable до и после таблицы
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+%%% Вертикальный сдвиг нижней подписи longtable
+\newcommand{\LongTableBottomCaptionRaise}[1]{%
+    \raisebox{7pt}[0pt][0pt]{#1}%
+}
+
+%%% Нижняя подпись для longtable
+\newcommand{\longcaption}[1]{%
+    \rowcolor{white}%
+    \caption*{\LongTableBottomCaptionRaise{#1}}%
+}
+
+%%% Пользовательские типы колонок
+\newcolumntype{X}{>{\RaggedRight\arraybackslash}p{\dimexpr\linewidth/3-2\tabcolsep\relax}}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{Z}{>{\centering\arraybackslash}X}
+\newcolumntype{W}{>{\RaggedLeft\arraybackslash}X}
+
+%%% Единый стиль ячеек заголовка
+\newcommand{\TableHeader}[1]{%
+    \textcolor{white}{\textbf{#1}}%
+}
+
+%%% Белая строка для служебных элементов longtable
+\newcommand{\WhiteRow}{%
+    \rowcolor{white}%
+}
+
+%%% Повторяемая подпись longtable на следующих страницах
+\newcommand{\LongTableContinuationCaption}{%
+    \WhiteRow
+    \caption[]{Продолжение} \tabularnewline
+}
+
+%%% Универсальная шапка longtable
+\newcommand{\LongTableHeader}[1]{%
+    #1
+    \endfirsthead
+    \LongTableContinuationCaption
+    #1
+    \endhead
+    \hline
+    \endfoot
+    \endlastfoot
+}
+
+%%% Нижняя подпись longtable на каждой странице
+\newcommand{\longcaptioneachpage}[1]{%
+    \longcaption{#1}
+    \endfoot
+    \longcaption{#1}
+    \endlastfoot
+}
